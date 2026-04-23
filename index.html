@@ -10,6 +10,24 @@
 body{background:#000;overflow:hidden;font-family:'Share Tech Mono',monospace;}
 #gw{position:relative;width:100vw;height:100vh;background:#030810;overflow:hidden;}
 #gc{display:block;width:100%;height:100%;}
+
+/* ── Welcome Screen ── */
+#welcomeScreen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(1,4,12,.99);z-index:25;}
+#welcomeScreen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(30,80,200,.2) 0%,transparent 60%);pointer-events:none;}
+.welcome-container{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;}
+.welcome-title{font-size:48px;font-weight:900;font-family:'Orbitron',sans-serif;letter-spacing:4px;background:linear-gradient(135deg,#4af 0%,#fff 50%,#f4a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:titlePulse 1.2s ease-out forwards;opacity:0;}
+.welcome-author{font-size:16px;color:#4af;letter-spacing:3px;font-family:'Orbitron',sans-serif;margin-top:8px;animation:authorSlide 1s ease-out forwards .3s;opacity:0;}
+.welcome-line{width:200px;height:2px;background:linear-gradient(90deg,transparent,#4af,transparent);animation:lineGrow 1.2s ease-out forwards .6s;opacity:0;}
+.welcome-desc{font-size:12px;color:#aac;letter-spacing:2px;margin-top:16px;animation:descFade 1s ease-out forwards .9s;opacity:0;line-height:1.8;}
+.welcome-button{margin-top:28px;padding:14px 40px;background:rgba(20,50,130,.6);border:2px solid rgba(100,180,255,.5);color:#4af;font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;border-radius:10px;cursor:pointer;transition:.3s;animation:buttonPop .8s cubic-bezier(.34,1.56,.64,1) forwards 1.2s;opacity:0;}
+.welcome-button:hover{border-color:#4af;color:#fff;box-shadow:0 0 24px rgba(64,170,255,.5);transform:translateY(-2px);}
+
+@keyframes titlePulse{from{opacity:0;transform:scale(.8) translateY(-20px);filter:blur(10px)}to{opacity:1;transform:scale(1) translateY(0);filter:blur(0)}}
+@keyframes authorSlide{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+@keyframes lineGrow{from{opacity:0;width:0}to{opacity:1;width:200px}}
+@keyframes descFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes buttonPop{from{opacity:0;transform:scale(.6) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+
 #hud{display:none;position:absolute;top:16px;left:18px;color:#fff;font-size:12px;line-height:1.9;pointer-events:none;text-shadow:0 0 8px #4af,0 1px 4px #000;}
 .hlabel{color:#4af;font-size:9px;letter-spacing:2px;text-transform:uppercase;}
 .hval{font-size:17px;font-weight:700;font-family:'Orbitron',sans-serif;}
@@ -65,22 +83,22 @@ body{background:#000;overflow:hidden;font-family:'Share Tech Mono',monospace;}
 #mobileCAMBtn{position:absolute;bottom:120px;left:18px;width:50px;height:50px;border-radius:50%;background:rgba(68,136,204,.6);border:2px solid rgba(100,180,255,.6);color:#4af;font-size:20px;display:none;z-index:4;cursor:pointer;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(100,180,255,.2);}
 #mobileMenuBtn{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:8px;background:rgba(30,60,120,.7);border:1.5px solid rgba(100,180,255,.4);color:#4af;font-size:18px;display:none;z-index:4;cursor:pointer;align-items:center;justify-content:center;}
 
-#idScreen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(1,4,12,.98);z-index:20;}
-#idScreen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(30,80,200,.18) 0%,transparent 60%);pointer-events:none;}
-
 /* ── Device Selection Screen ── */
 #deviceScreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(1,4,12,.98);z-index:19;}
 #deviceScreen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(30,80,200,.18) 0%,transparent 60%);pointer-events:none;}
 .device-logo{font-size:44px;font-weight:900;font-family:'Orbitron',sans-serif;letter-spacing:6px;margin-bottom:6px;background:linear-gradient(135deg,#4af 0%,#fff 50%,#f4a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;}
-.device-tagline{font-size:11px;color:#4af;letter-spacing:3px;margin-bottom:42px;position:relative;animation:fadeUp .5s ease both .1s;opacity:0;}
+.device-tagline{font-size:11px;color:#4af;letter-spacing:3px;margin-bottom:42px;position:relative;}
 .device-btns{display:flex;flex-direction:column;gap:16px;align-items:center;position:relative;}
 .device-btn{width:280px;padding:16px 28px;cursor:pointer;background:rgba(8,18,50,.6);border:2px solid rgba(80,150,255,.4);color:#4af;border-radius:12px;font-family:'Orbitron',sans-serif;font-weight:700;font-size:14px;transition:.25s;display:flex;align-items:center;gap:16px;justify-content:center;letter-spacing:2px;}
 .device-btn:hover{border-color:#4af;color:#fff;background:rgba(20,50,140,.75);box-shadow:0 0 22px rgba(64,170,255,.35);transform:translateY(-2px);}
 .device-btn-icon{font-size:28px;}
 
-.id-logo{font-size:44px;font-weight:900;font-family:'Orbitron',sans-serif;letter-spacing:6px;margin-bottom:4px;background:linear-gradient(135deg,#4af 0%,#fff 50%,#f4a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;animation:fadeUp .5s ease both 0s;}
-.id-tagline{font-size:11px;color:#4af;letter-spacing:3px;margin-bottom:36px;position:relative;animation:fadeUp .5s ease both .1s;opacity:0;}
-.id-box{position:relative;background:rgba(6,14,38,.88);border:1px solid rgba(60,120,255,.2);border-radius:16px;padding:28px 36px 26px;display:flex;flex-direction:column;align-items:center;min-width:320px;box-shadow:0 8px 48px rgba(0,0,0,.6);animation:fadeUp .5s ease both .2s;opacity:0;}
+/* ── ID Input Screen ── */
+#idScreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(1,4,12,.98);z-index:20;}
+#idScreen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(30,80,200,.18) 0%,transparent 60%);pointer-events:none;}
+.id-logo{font-size:44px;font-weight:900;font-family:'Orbitron',sans-serif;letter-spacing:6px;margin-bottom:4px;background:linear-gradient(135deg,#4af 0%,#fff 50%,#f4a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;}
+.id-tagline{font-size:11px;color:#4af;letter-spacing:3px;margin-bottom:36px;position:relative;}
+.id-box{position:relative;background:rgba(6,14,38,.88);border:1px solid rgba(60,120,255,.2);border-radius:16px;padding:28px 36px 26px;display:flex;flex-direction:column;align-items:center;min-width:320px;box-shadow:0 8px 48px rgba(0,0,0,.6);}
 .id-box-title{font-size:9px;color:#4af;letter-spacing:4px;margin-bottom:18px;font-family:'Orbitron',sans-serif;}
 .id-label{font-size:9px;color:#4af;letter-spacing:3px;margin-bottom:8px;align-self:flex-start;}
 #idInput{background:rgba(10,20,55,.9);border:1.5px solid rgba(80,150,255,.35);color:#fff;font-size:17px;font-family:'Orbitron',sans-serif;padding:11px 18px;border-radius:9px;width:100%;text-align:center;outline:none;letter-spacing:4px;transition:border-color .2s,box-shadow .2s;caret-color:#4af;}
@@ -90,8 +108,6 @@ body{background:#000;overflow:hidden;font-family:'Share Tech Mono',monospace;}
 #idConfirmBtn{margin-top:18px;width:100%;padding:12px 0;font-size:12px;cursor:pointer;background:rgba(20,50,130,.5);border:2px solid rgba(80,150,255,.5);color:#4af;border-radius:9px;letter-spacing:3px;font-family:'Orbitron',sans-serif;font-weight:700;transition:.25s;}
 #idConfirmBtn:hover{border-color:#4af;color:#fff;background:rgba(30,70,180,.7);box-shadow:0 0 22px rgba(64,170,255,.4);}
 .id-hint{font-size:9px;color:#1e2838;letter-spacing:1px;margin-top:14px;line-height:1.8;text-align:center;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
 
 #menuScreen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(1,4,12,.96);color:#fff;text-align:center;padding:24px;z-index:7;}
 #menuScreen::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(30,80,200,.13) 0%,transparent 60%);}
@@ -153,7 +169,6 @@ body{background:#000;overflow:hidden;font-family:'Share Tech Mono',monospace;}
 .end-btn-gray:hover{border-color:rgba(140,190,255,.5);background:rgba(15,25,65,.6);}
 .end-key-hint{font-size:8px;color:#1e2838;letter-spacing:2px;margin-top:10px;}
 
-/* Mobile Layout */
 @media(max-width:768px){
   #ctrlHud{display:none!important;}
   #mobileStick{display:flex;justify-content:center;align-items:center;}
@@ -168,6 +183,20 @@ body{background:#000;overflow:hidden;font-family:'Share Tech Mono',monospace;}
   <canvas id="gc"></canvas>
   <div id="scanlines"></div>
   <div id="vignette"></div>
+
+  <!-- Welcome Screen -->
+  <div id="welcomeScreen">
+    <div class="welcome-container">
+      <div class="welcome-title">THE DROPPER</div>
+      <div class="welcome-author">aromanの自作ゲームへようこそ</div>
+      <div class="welcome-line"></div>
+      <div class="welcome-desc">
+        穴を通り抜けてゴールを目指せ<br>
+        全15レベルの究極チャレンジ
+      </div>
+      <button class="welcome-button" onclick="proceedToDevice()">▶ START</button>
+    </div>
+  </div>
 
   <div id="hud">
     <div class="hlabel">LEVEL</div>
@@ -343,88 +372,120 @@ body{background:#000;overflow:hidden;font-family:'Share Tech Mono',monospace;}
 'use strict';
 
 // ═══════════════════════════════════════════════
-// LEVELS - UPDATED
+// LEVELS - UPGRADED & FIXED
 // ═══════════════════════════════════════════════
 const LEVELS=[
-  {name:'FREE FALL',diff:1,plates:[{hx:0,hz:0,hw:3.5,obs:[]},{hx:3.2,hz:-3.0,hw:3.4,obs:[]},{hx:-3.2,hz:3.2,hw:3.3,obs:[]},{hx:2.5,hz:3.5,hw:3.2,obs:[]},{hx:-3.5,hz:-2.8,hw:3.1,obs:[]}]},
-  {name:'DRIFT',diff:2,plates:[{hx:2.8,hz:0,hw:3.0,obs:[]},{hx:-3.0,hz:3.0,hw:2.9,obs:[]},{hx:3.2,hz:-3.2,hw:2.8,obs:[]},{hx:-2.5,hz:-3.5,hw:2.7,obs:[]}]},
-  {name:'DOUBLE',diff:3,plates:[{hx:0,hz:2.5,hw:2.8,obs:[]},{hx:-2.5,hz:-1.5,hw:2.6,obs:[]},{hx:3.0,hz:0,hw:2.5,obs:[]}]},
+  {name:'FREE FALL',diff:1,plates:[
+    {hx:0,hz:0,hw:3.5,obs:[]},
+    {hx:3.2,hz:-3.0,hw:3.4,obs:[]},
+    {hx:-3.2,hz:3.2,hw:3.3,obs:[]},
+    {hx:2.5,hz:3.5,hw:3.2,obs:[]},
+    {hx:-3.5,hz:-2.8,hw:3.1,obs:[]}
+  ]},
+  {name:'DRIFT',diff:2,plates:[
+    {hx:2.8,hz:0,hw:3.0,obs:[]},
+    {hx:-3.0,hz:3.0,hw:2.9,obs:[]},
+    {hx:3.2,hz:-3.2,hw:2.8,obs:[]},
+    {hx:-2.5,hz:-3.5,hw:2.7,obs:[]}
+  ]},
+  {name:'DOUBLE',diff:3,plates:[
+    {hx:0,hz:2.5,hw:2.8,obs:[]},
+    {hx:-2.5,hz:-1.5,hw:2.6,obs:[]},
+    {hx:3.0,hz:0,hw:2.5,obs:[]}
+  ]},
   {name:'FIRST SPIN',diff:8,plates:[
     {hx:3.0,hz:0,hw:2.5,obs:[{type:'bar',speed:0.45,hlMult:0.55,phase:0}]},
-    {hx:-2.0,hz:-2.5,hw:2.4,obs:[]}]},
+    {hx:-2.0,hz:-2.5,hw:2.4,obs:[]}
+  ]},
   {name:'TWIN SPIN',diff:15,plates:[
     {hx:0,hz:0,hw:2.3,obs:[{type:'bar',speed:0.6,hlMult:0.55,phase:0}]},
-    {hx:3.2,hz:-2.5,hw:2.2,obs:[{type:'bar',speed:0.6,hlMult:0.55,phase:Math.PI}]}]},
+    {hx:3.2,hz:-2.5,hw:2.2,obs:[{type:'bar',speed:0.6,hlMult:0.55,phase:Math.PI}]}
+  ]},
   {name:'SLIDE SHOW',diff:22,plates:[
     {hx:0,hz:3.5,hw:2.1,obs:[{type:'slide',speed:1.1,amp:1.0,dir:'x'}]},
     {hx:3.5,hz:0,hw:2.0,obs:[{type:'bar',speed:0.7,hlMult:0.55,phase:0}]},
-    {hx:-3.0,hz:-2.5,hw:1.9,obs:[{type:'slide',speed:1.2,amp:0.9,dir:'z'}]}]},
+    {hx:-3.0,hz:-2.5,hw:1.9,obs:[{type:'slide',speed:1.2,amp:0.9,dir:'z'}]}
+  ]},
   {name:'CROSS ROADS',diff:30,plates:[
     {hx:-2.0,hz:3.0,hw:1.9,obs:[{type:'cross',speed:0.75,hlMult:0.50,phase:0}]},
     {hx:4.0,hz:-1.0,hw:1.9,obs:[{type:'bar',speed:1.0,hlMult:0.55,phase:0}]},
-    {hx:0,hz:-4.0,hw:1.8,obs:[{type:'slide',speed:1.4,amp:1.0,dir:'z'}]}]},
+    {hx:0,hz:-4.0,hw:1.8,obs:[{type:'slide',speed:1.4,amp:1.0,dir:'z'}]}
+  ]},
   {name:'BLADES',diff:40,plates:[
     {hx:4.0,hz:3.5,hw:1.8,obs:[{type:'bar',speed:1.2,hlMult:0.58,phase:0}]},
     {hx:-4.0,hz:2.5,hw:1.7,obs:[{type:'cross',speed:0.9,hlMult:0.50,phase:Math.PI/4}]},
-    {hx:0,hz:-4.5,hw:1.7,obs:[{type:'bar',speed:1.2,hlMult:0.55,phase:Math.PI/3},{type:'slide',speed:1.6,amp:0.85,dir:'x'}]}]},
+    {hx:0,hz:-4.5,hw:1.7,obs:[{type:'bar',speed:1.2,hlMult:0.55,phase:Math.PI/3},{type:'slide',speed:1.6,amp:0.85,dir:'x'}]}
+  ]},
   {name:'CORNERS',diff:52,plates:[
     {hx:3.5,hz:3.5,hw:1.7,obs:[{type:'cross',speed:1.2,hlMult:0.52,phase:0}]},
     {hx:-3.5,hz:3.0,hw:1.6,obs:[{type:'bar',speed:1.4,hlMult:0.60,phase:Math.PI/3}]},
     {hx:3.5,hz:-3.5,hw:1.6,obs:[{type:'cross',speed:1.2,hlMult:0.50,phase:Math.PI/4}]},
-    {hx:-3.0,hz:-3.5,hw:1.5,obs:[{type:'slide',speed:2.0,amp:0.90,dir:'x'},{type:'slide',speed:1.8,amp:0.80,dir:'z'}]}]},
+    {hx:-3.0,hz:-3.5,hw:1.5,obs:[{type:'slide',speed:2.0,amp:0.90,dir:'x'},{type:'slide',speed:1.8,amp:0.80,dir:'z'}]}
+  ]},
   {name:'HALFWAY',diff:63,plates:[
     {hx:0,hz:0,hw:1.5,obs:[{type:'cross',speed:1.5,hlMult:0.55,phase:0}]},
     {hx:4.0,hz:0,hw:1.5,obs:[{type:'bar',speed:1.6,hlMult:0.60,phase:0},{type:'slide',speed:1.8,amp:0.80,dir:'z'}]},
     {hx:-4.0,hz:0,hw:1.4,obs:[{type:'cross',speed:1.4,hlMult:0.52,phase:Math.PI/6}]},
-    {hx:0,hz:-4.5,hw:1.4,obs:[{type:'bar',speed:1.8,hlMult:0.62,phase:Math.PI/2},{type:'slide',speed:2.0,amp:0.78,dir:'x'}]}]},
+    {hx:0,hz:-4.5,hw:1.4,obs:[{type:'bar',speed:1.8,hlMult:0.62,phase:Math.PI/2},{type:'slide',speed:2.0,amp:0.78,dir:'x'}]}
+  ]},
   {name:'MAZE',diff:74,plates:[
     {hx:0,hz:4.0,hw:1.4,obs:[{type:'cross',speed:1.8,hlMult:0.55,phase:0}]},
     {hx:4.0,hz:0,hw:1.4,obs:[{type:'cross',speed:1.8,hlMult:0.55,phase:Math.PI/4}]},
     {hx:0,hz:0,hw:1.3,obs:[{type:'bar',speed:2.0,hlMult:0.65,phase:0},{type:'slide',speed:2.2,amp:0.72,dir:'x'}]},
     {hx:-4.0,hz:-1.0,hw:1.3,obs:[{type:'cross',speed:1.7,hlMult:0.52,phase:Math.PI/3}]},
-    {hx:2.0,hz:-4.0,hw:1.3,obs:[{type:'bar',speed:2.2,hlMult:0.65,phase:Math.PI}]}]},
+    {hx:2.0,hz:-4.0,hw:1.3,obs:[{type:'bar',speed:2.2,hlMult:0.65,phase:Math.PI}]}
+  ]},
   {name:'BLENDER',diff:82,plates:[
     {hx:0,hz:0,hw:1.3,obs:[{type:'cross',speed:2.2,hlMult:0.58,phase:0}]},
     {hx:4.0,hz:2.0,hw:1.3,obs:[{type:'cross',speed:2.0,hlMult:0.55,phase:Math.PI/3},{type:'slide',speed:2.5,amp:0.70,dir:'z'}]},
     {hx:-4.0,hz:-2.0,hw:1.2,obs:[{type:'bar',speed:2.5,hlMult:0.68,phase:Math.PI/4},{type:'slide',speed:2.3,amp:0.65,dir:'x'}]},
     {hx:2.0,hz:-4.5,hw:1.2,obs:[{type:'cross',speed:2.3,hlMult:0.55,phase:Math.PI/5}]},
-    {hx:-2.5,hz:4.0,hw:1.2,obs:[{type:'bar',speed:2.6,hlMult:0.68,phase:0},{type:'slide',speed:2.4,amp:0.65,dir:'z'}]}]},
+    {hx:-2.5,hz:4.0,hw:1.2,obs:[{type:'bar',speed:2.6,hlMult:0.68,phase:0},{type:'slide',speed:2.4,amp:0.65,dir:'z'}]}
+  ]},
   {name:'CHAOS',diff:89,plates:[
     {hx:4.0,hz:3.0,hw:1.2,obs:[{type:'cross',speed:2.5,hlMult:0.60,phase:0},{type:'slide',speed:2.8,amp:0.65,dir:'x'}]},
     {hx:-4.0,hz:-3.0,hw:1.2,obs:[{type:'cross',speed:2.5,hlMult:0.60,phase:Math.PI/4},{type:'slide',speed:2.6,amp:0.65,dir:'z'}]},
     {hx:0,hz:4.8,hw:1.1,obs:[{type:'bar',speed:2.8,hlMult:0.70,phase:0},{type:'cross',speed:2.3,hlMult:0.55,phase:Math.PI/6}]},
     {hx:3.5,hz:-4.5,hw:1.1,obs:[{type:'cross',speed:2.6,hlMult:0.58,phase:Math.PI/3},{type:'slide',speed:3.0,amp:0.60,dir:'x'}]},
     {hx:-3.5,hz:4.5,hw:1.1,obs:[{type:'bar',speed:3.0,hlMult:0.72,phase:Math.PI/4},{type:'slide',speed:2.8,amp:0.60,dir:'z'}]},
-    {hx:-0.5,hz:-4.8,hw:1.1,obs:[{type:'cross',speed:2.8,hlMult:0.60,phase:0}]}]},
+    {hx:-0.5,hz:-4.8,hw:1.1,obs:[{type:'cross',speed:2.8,hlMult:0.60,phase:0}]}
+  ]},
   {name:'NIGHTMARE',diff:95,plates:[
     {hx:4.8,hz:0,hw:1.1,obs:[{type:'cross',speed:2.8,hlMult:0.62,phase:0},{type:'slide',speed:3.2,amp:0.55,dir:'z'}]},
     {hx:-4.8,hz:1.5,hw:1.1,obs:[{type:'cross',speed:3.0,hlMult:0.62,phase:Math.PI/4},{type:'slide',speed:3.0,amp:0.55,dir:'x'}]},
     {hx:1.5,hz:4.8,hw:1.0,obs:[{type:'bar',speed:3.2,hlMult:0.75,phase:0},{type:'cross',speed:2.6,hlMult:0.58,phase:Math.PI/5},{type:'slide',speed:3.5,amp:0.50,dir:'x'}]},
     {hx:-1.5,hz:-4.8,hw:1.0,obs:[{type:'cross',speed:3.0,hlMult:0.62,phase:Math.PI/3},{type:'slide',speed:3.2,amp:0.50,dir:'z'}]},
     {hx:4.0,hz:-4.0,hw:1.0,obs:[{type:'bar',speed:3.5,hlMult:0.75,phase:0},{type:'slide',speed:3.5,amp:0.50,dir:'x'}]},
-    {hx:-4.0,hz:4.0,hw:1.0,obs:[{type:'cross',speed:3.2,hlMult:0.62,phase:Math.PI/6},{type:'slide',speed:3.0,amp:0.50,dir:'z'}]}]},
+    {hx:-4.0,hz:4.0,hw:1.0,obs:[{type:'cross',speed:3.2,hlMult:0.62,phase:Math.PI/6},{type:'slide',speed:3.0,amp:0.50,dir:'z'}]}
+  ]},
   {name:'NARROW PASSAGE',diff:97,plates:[
     {hx:0,hz:0,hw:1.0,obs:[{type:'cross',speed:3.0,hlMult:0.65,phase:0},{type:'slide',speed:3.5,amp:0.48,dir:'x'}]},
-    {hx:4.8,hz:2.5,hw:0.95,obs:[{type:'cross',speed:3.2,hlMult:0.65,phase:Math.PI/4},{type:'slide',speed:3.8,amp:0.45,dir:'z'}]},
-    {hx:-4.8,hz:-2.5,hw:0.95,obs:[{type:'bar',speed:3.5,hlMult:0.75,phase:0},{type:'cross',speed:2.8,hlMult:0.60,phase:Math.PI/6},{type:'slide',speed:4.0,amp:0.42,dir:'x'}]},
-    {hx:2.5,hz:-4.8,hw:0.9,obs:[{type:'cross',speed:3.3,hlMult:0.63,phase:Math.PI/3},{type:'slide',speed:3.6,amp:0.45,dir:'z'}]},
-    {hx:-2.5,hz:4.8,hw:0.9,obs:[{type:'cross',speed:3.5,hlMult:0.63,phase:Math.PI/5},{type:'slide',speed:4.0,amp:0.42,dir:'x'}]},
-    {hx:4.5,hz:-4.5,hw:0.85,obs:[{type:'bar',speed:4.0,hlMult:0.75,phase:Math.PI/4},{type:'slide',speed:3.8,amp:0.42,dir:'z'}]},
-    {hx:-4.5,hz:-4.5,hw:0.85,obs:[{type:'cross',speed:4.0,hlMult:0.65,phase:0},{type:'slide',speed:4.5,amp:0.40,dir:'x'},{type:'slide',speed:4.2,amp:0.40,dir:'z'}]}]},
+    {hx:4.5,hz:2.5,hw:0.95,obs:[{type:'cross',speed:3.2,hlMult:0.65,phase:Math.PI/4},{type:'slide',speed:3.8,amp:0.45,dir:'z'}]},
+    {hx:-4.5,hz:-2.5,hw:0.95,obs:[{type:'bar',speed:3.5,hlMult:0.75,phase:0},{type:'cross',speed:2.8,hlMult:0.60,phase:Math.PI/6},{type:'slide',speed:4.0,amp:0.42,dir:'x'}]},
+    {hx:2.5,hz:-4.5,hw:0.9,obs:[{type:'cross',speed:3.3,hlMult:0.63,phase:Math.PI/3},{type:'slide',speed:3.6,amp:0.45,dir:'z'}]},
+    {hx:-2.5,hz:4.5,hw:0.9,obs:[{type:'cross',speed:3.5,hlMult:0.63,phase:Math.PI/5},{type:'slide',speed:4.0,amp:0.42,dir:'x'}]},
+    {hx:4.2,hz:-4.2,hw:0.85,obs:[{type:'bar',speed:4.0,hlMult:0.75,phase:Math.PI/4},{type:'slide',speed:3.8,amp:0.42,dir:'z'}]},
+    {hx:-4.2,hz:-4.2,hw:0.85,obs:[{type:'cross',speed:4.0,hlMult:0.65,phase:0},{type:'slide',speed:4.5,amp:0.40,dir:'x'},{type:'slide',speed:4.2,amp:0.40,dir:'z'}]}
+  ]},
   {name:'PURE LUCK',diff:100,plates:[
-    {hx:Math.random()*6-3,hz:Math.random()*6-3,hw:0.65,obs:[{type:'cross',speed:4.5,hlMult:0.70,phase:0},{type:'slide',speed:5.0,amp:0.35,dir:'x'}]},
-    {hx:Math.random()*6-3,hz:Math.random()*6-3,hw:0.65,obs:[{type:'cross',speed:4.5,hlMult:0.70,phase:Math.PI/4},{type:'slide',speed:5.0,amp:0.35,dir:'z'}]},
-    {hx:Math.random()*6-3,hz:Math.random()*6-3,hw:0.65,obs:[{type:'bar',speed:4.8,hlMult:0.70,phase:0},{type:'cross',speed:4.0,hlMult:0.65,phase:Math.PI/6},{type:'slide',speed:5.2,amp:0.32,dir:'x'}]},
-    {hx:Math.random()*6-3,hz:Math.random()*6-3,hw:0.65,obs:[{type:'cross',speed:4.6,hlMult:0.68,phase:Math.PI/3},{type:'slide',speed:4.8,amp:0.35,dir:'z'}]},
-    {hx:Math.random()*6-3,hz:Math.random()*6-3,hw:0.65,obs:[{type:'cross',speed:4.7,hlMult:0.68,phase:Math.PI/5},{type:'slide',speed:5.0,amp:0.32,dir:'x'}]},
-    {hx:Math.random()*6-3,hz:Math.random()*6-3,hw:0.65,obs:[{type:'bar',speed:5.0,hlMult:0.70,phase:Math.PI/4},{type:'slide',speed:4.9,amp:0.32,dir:'z'}]},
-    {hx:Math.random()*6-3,hz:Math.random()*6-3,hw:0.65,obs:[{type:'cross',speed:5.0,hlMult:0.70,phase:0},{type:'slide',speed:5.2,amp:0.30,dir:'x'},{type:'slide',speed:5.0,amp:0.30,dir:'z'}]}
+    {hx:0,hz:0,hw:0.65,obs:[{type:'cross',speed:4.5,hlMult:0.70,phase:0},{type:'slide',speed:5.0,amp:0.35,dir:'x'}]},
+    {hx:4.0,hz:2.5,hw:0.65,obs:[{type:'cross',speed:4.5,hlMult:0.70,phase:Math.PI/4},{type:'slide',speed:5.0,amp:0.35,dir:'z'}]},
+    {hx:-4.0,hz:-2.5,hw:0.65,obs:[{type:'bar',speed:4.8,hlMult:0.70,phase:0},{type:'cross',speed:4.0,hlMult:0.65,phase:Math.PI/6},{type:'slide',speed:5.2,amp:0.32,dir:'x'}]},
+    {hx:2.5,hz:-4.0,hw:0.65,obs:[{type:'cross',speed:4.6,hlMult:0.68,phase:Math.PI/3},{type:'slide',speed:4.8,amp:0.35,dir:'z'}]},
+    {hx:-2.5,hz:4.0,hw:0.65,obs:[{type:'cross',speed:4.7,hlMult:0.68,phase:Math.PI/5},{type:'slide',speed:5.0,amp:0.32,dir:'x'}]},
+    {hx:4.2,hz:-4.2,hw:0.65,obs:[{type:'bar',speed:5.0,hlMult:0.70,phase:Math.PI/4},{type:'slide',speed:4.9,amp:0.32,dir:'z'}]},
+    {hx:-4.2,hz:4.2,hw:0.65,obs:[{type:'cross',speed:5.0,hlMult:0.70,phase:0},{type:'slide',speed:5.2,amp:0.30,dir:'x'},{type:'slide',speed:5.0,amp:0.30,dir:'z'}]}
   ]}
 ];
 
 // ═══════════════════════════════════════════════
 // DEVICE & PLATFORM
 // ═══════════════════════════════════════════════
+window.proceedToDevice=function(){
+  document.getElementById('welcomeScreen').style.display='none';
+  document.getElementById('deviceScreen').style.display='flex';
+};
+
 let currentDevice='pc';
 function selectDevice(device){
   currentDevice=device;
@@ -519,7 +580,6 @@ function applyCamera(dt){
   }
 }
 
-// Mouse / touch orbit (drag mode)
 const canvas=document.getElementById('gc');
 canvas.addEventListener('mousedown',e=>{
   if(gs==='playing'&&camMode===4){drag.on=true;drag.lx=e.clientX;drag.ly=e.clientY;canvas.style.cursor='grabbing';e.preventDefault();}
@@ -765,12 +825,16 @@ function loadLevel(lvIdx){
     p.obstacles.forEach(o=>{if(o._group)scene.remove(o._group);});
   });
   platforms.length=0;
-  const lv=LEVELS[lvIdx];
+  let lv=LEVELS[lvIdx];
   let plates=lv.plates;
-  if(mapMode==='random') plates=plates.map(p=>{
-    const maxOff=SHAFT_R-p.hw-1.6;
-    return{...p,hx:(Math.random()-.5)*2*maxOff,hz:(Math.random()-.5)*2*maxOff};
-  });
+  if(mapMode==='random'){
+    plates=plates.map(p=>{
+      const maxOff=Math.min(SHAFT_R-p.hw-1.2,3.5);
+      const angle=Math.random()*Math.PI*2;
+      const dist=(Math.random()*0.6+0.4)*maxOff;
+      return{...p,hx:Math.cos(angle)*dist,hz:Math.sin(angle)*dist};
+    });
+  }
   plates.forEach((p,i)=>makePlatform(p,i,plates.length));
   const total=plates.length;
   document.getElementById('holesdisplay').textContent=`0 / ${total}`;
@@ -850,7 +914,7 @@ setgear.onclick=()=>{panelOpen=!panelOpen;setpanel.style.display=panelOpen?'bloc
 // ═══════════════════════════════════════════════
 // GAME STATE
 // ═══════════════════════════════════════════════
-let gs='device',vel={x:0,y:0,z:0},T=0,gsc=0;
+let gs='welcome',vel={x:0,y:0,z:0},T=0,gsc=0;
 let currentLevel=0,levelClearing=false,levelClearTimer=0;
 let shakeTimer=0,shakeAmt=0;
 const keys={};
@@ -868,6 +932,11 @@ function showHUD(on){
 
 // ── Keyboard ──
 document.addEventListener('keydown',e=>{
+  // Welcome screen
+  if(document.getElementById('welcomeScreen').style.display!=='none'){
+    if(e.code==='Enter'||e.code==='Space')proceedToDevice();
+    return;
+  }
   // Device screen
   if(document.getElementById('deviceScreen').style.display!=='none'){
     if(e.code==='KeyP')selectDevice('pc');
@@ -1177,13 +1246,6 @@ window.addEventListener('resize',()=>{
   const nw=window.innerWidth,nh=window.innerHeight;
   renderer.setSize(nw,nh);cam.aspect=nw/nh;cam.updateProjectionMatrix();
 });
-
-// ── Init ──
-(async()=>{
-  document.getElementById('deviceScreen').style.display='flex';
-  const r=await safeGet(LAST_KEY);
-  if(r&&r.value)document.getElementById('idInput').value=r.value;
-})();
 
 })();
 </script>
